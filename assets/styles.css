@@ -1,0 +1,216 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #001F3F, #003366);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    position: relative;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.5rem;
+}
+
+header a {
+    background: #FF851B;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background 0.3s ease-in-out;
+}
+
+header a:hover {
+    background: #E67817;
+}
+
+/* Sections */
+section {
+    padding: 50px 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 1s ease-in-out forwards;
+}
+
+section:nth-child(odd) {
+    background: #f4f4f4;
+}
+
+.services {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.service {
+    flex: 1 1 calc(33.333% - 20px);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.service:hover {
+    transform: scale(1.05);
+}
+
+/* Carrusel */
+.carousel {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+    text-align: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+/* Contact Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form input, form textarea, form button {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    background: #001F3F;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+form button:hover {
+    background: #003366;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #001F3F;
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries */
+
+/* Tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1.2rem;
+    }
+
+    .services {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .service {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+/* Celulares (menos de 768px) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    header a {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+
+    .services {
+        flex-direction: column;
+    }
+
+    .service {
+        flex: 1 1 100%;
+        margin-bottom: 20px;
+    }
+
+    #leaders, #clients {
+        padding: 30px 15px;
+        text-align: center;
+    }
+
+    .carousel {
+        gap: 5px;
+    }
+
+    form input, form textarea, form button {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+}

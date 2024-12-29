@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch: # Permite ejecutar manualmente el workflow
+  push:
+    branches:
+      - main # Se ejecuta automáticamente al hacer push en la rama 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Clonar el repositorio
+      - uses: actions/checkout@v4
+      
+
+      # 2. Configurar Node.js y el administrador de paquetes
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # 3. Instalar dependencias y construir el proyecto
+      - run: npm install
+      - run: npx nuxt build --preset github_pages
+
+      # 4. Subir los archivos de salida como un artefacto
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./.output/public
+
+  deploy:
+    needs: build # El trabajo de despliegue depende del trabajo de compilación
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github_pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # 5. Descargar el artefacto y desplegarlo en GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
